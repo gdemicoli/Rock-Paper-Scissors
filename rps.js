@@ -34,7 +34,8 @@ function playRound() {
     console.log(computerChoice);
 
     if(humanChoice == computerChoice) {
-        console.log("You both chose " + humanChoice + "it is a draw.")
+        console.log("You both chose " + humanChoice + " it is a draw.")
+        return "ch";
     }
 
     if(humanChoice == "scissors") {
@@ -83,12 +84,54 @@ function playRound() {
         }
     }
 
-    return " incorrect input";
+    return "incorrect input";
 } 
 
-playRound();
+function playGame() {
 
+    let humanScore = 0;
+    let computerScore = 0;
 
-let humanScore = 0;
-let computerScore = 0;
+    let roundWinner;
+
+    console.log("Best of 5 rounds") 
+    for (let i = 0; i < 5; i++) {
+
+        console.log("ROUND " + (i + 1));
+       console.log("The current score is: YOU: " + humanScore + " COMPUTER: " + computerScore)
+
+        roundWinner = playRound();
+
+        
+        while(roundWinner == "incorrect input"){
+            console.log("Round not counted, please enter a valid input")
+            roundWinner = playRound();
+        }
+
+        if (roundWinner == "c") {
+            computerScore = computerScore + 1;
+        }
+
+        else if (roundWinner == "h") {
+            humanScore = humanScore + 1;
+        }
+
+        else if (roundWinner == "ch"){
+            computerScore = computerScore + 1;
+            humanScore = humanScore + 1;
+        }
+    }
+
+    if (humanScore > computerScore){
+        console.log("You win!")
+    }
+
+    else {
+        console.log("Computer wins!");
+    }
+
+}
+
+playGame()
+
 
