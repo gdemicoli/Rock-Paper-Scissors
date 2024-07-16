@@ -23,11 +23,11 @@ function getHumanChoice() {
     return response;
 }
 
-function playRound() {
-    let humanChoice = getHumanChoice();
+function playRound(input) {
+    let humanChoice = input;
     let computerChoice = getComputerChoice();
 
-    humanChoice = humanChoice.toLowerCase();
+    // humanChoice = humanChoice.toLowerCase();
     computerChoice = computerChoice.toLowerCase();
 
     console.log(humanChoice);
@@ -94,43 +94,97 @@ function playGame() {
 
     let roundWinner;
 
-    console.log("Best of 5 rounds") 
-    for (let i = 0; i < 5; i++) {
 
-        console.log("ROUND " + (i + 1));
-       console.log("The current score is: YOU: " + humanScore + " COMPUTER: " + computerScore)
+    const content = document.querySelector("body")
 
-        roundWinner = playRound();
+    const divButtons = document.createElement("div")
+
+    const rockButton = document.createElement("button");
+    const scissorsButton = document.createElement("button");
+    const paperButton = document.createElement("button");
+
+    rockButton.textContent = "Rock";
+    scissorsButton.textContent = "Scissors";
+    paperButton.textContent = "Paper";
+
+    divButtons.appendChild(rockButton)
+    divButtons.appendChild(paperButton)
+    divButtons.appendChild(scissorsButton)
+
+    content.appendChild(divButtons);
+
+    //player select input
+
+    rockButton.addEventListener('click', () => {
+
+        //winner is found from what computer has chosen
+        roundWinner = playRound("rock");
+        //pass the winner to the update Scores function to change scoreboard
+    })
+
+    paperButton.addEventListener('click', () => {
+        playRound("paper");
+    })
+
+    scissorsButton.addEventListener('click', () => {
+       roundWinner = playRound("scissors");
+       updateScores(roundWinner); 
+       
+    })
+    
+    const divScores = document.createElement("div")
+
+    
+
+    divScores.appendChild("")
+
+    content.appendChild(divScores);
+    
+
+
+    // console.log("Best of 5 rounds") 
+    // for (let i = 0; i < 5; i++) {
+
+        // console.log("ROUND " + (i + 1));
+    //    console.log("The current score is: YOU: " + humanScore + " COMPUTER: " + computerScore)
+
+    //     roundWinner = playRound();
 
         
-        while(roundWinner == "incorrect input"){
-            console.log("Round not counted, please enter a valid input")
-            roundWinner = playRound();
-        }
+    //     while(roundWinner == "incorrect input"){
+    //         console.log("Round not counted, please enter a valid input")
+    //         roundWinner = playRound();
+    //     }
 
-        if (roundWinner == "c") {
-            computerScore = computerScore + 1;
-        }
+    //     if (roundWinner == "c") {
+    //         computerScore = computerScore + 1;
+    //     }
 
-        else if (roundWinner == "h") {
-            humanScore = humanScore + 1;
-        }
+    //     else if (roundWinner == "h") {
+    //         humanScore = humanScore + 1;
+    //     }
 
-        else if (roundWinner == "ch"){
-            computerScore = computerScore + 1;
-            humanScore = humanScore + 1;
-        }
-    }
+    //     else if (roundWinner == "ch"){
+    //         computerScore = computerScore + 1;
+    //         humanScore = humanScore + 1;
+    //     }
+    // }
 
-    if (humanScore > computerScore){
-        console.log("You win!")
-    }
+    // if (humanScore > computerScore){
+    //     console.log("You win!")
+    // }
 
-    else {
-        console.log("Computer wins!");
-    }
+    // else {
+    //     console.log("Computer wins!");
+    // }
 
 }
+
+
+
+
+
+
 
 playGame()
 
