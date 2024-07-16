@@ -120,6 +120,7 @@ function playGame() {
         //winner is found from what computer has chosen
         roundWinner = playRound("rock");
         //pass the winner to the update Scores function to change scoreboard
+
     })
 
     paperButton.addEventListener('click', () => {
@@ -134,12 +135,40 @@ function playGame() {
     
     const divScores = document.createElement("div")
 
+    const playerScore = document.createElement("h3");
+    const compScore = document.createElement("h3");
+
+    playerScore.textContent = "YOU: " + humanScore;
+    compScore.textContent = "COMPUTER: " + computerScore;
+
+    divScores.appendChild(playerScore)
+    divScores.appendChild(compScore)
     
 
-    divScores.appendChild("")
 
     content.appendChild(divScores);
     
+
+   function updateScores(winner) {
+
+            if (winner == "c") {
+            computerScore = computerScore + 1;
+        }
+
+        else if (winner == "h") {
+            humanScore = humanScore + 1;
+        }
+
+        else if (winner == "ch"){
+            computerScore = computerScore + 1;
+            humanScore = humanScore + 1;
+        }
+
+        playerScore.textContent = "YOU: " + humanScore;
+        compScore.textContent = "COMPUTER: " + computerScore;
+
+
+    }
 
 
     // console.log("Best of 5 rounds") 
