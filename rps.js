@@ -191,6 +191,8 @@ function playGame() {
         //pass the winner to the update Scores function to change scoreboard
         updateScores(roundWinner);
 
+        roundEnder(roundNumber);
+
         
     })
 
@@ -200,6 +202,8 @@ function playGame() {
 
         roundWinner = playRound("paper");
         updateScores(roundWinner); 
+
+        roundEnder(roundNumber);
     })
 
     scissorsButton.addEventListener('click', () => {
@@ -208,8 +212,35 @@ function playGame() {
 
        roundWinner = playRound("scissors");
        updateScores(roundWinner); 
+
+       
+       roundEnder(roundNumber)
+       
        
     })
+
+    function roundEnder(roundNumber){
+
+        if(roundNumber % 5 == 0) {
+            
+            const finish = document.createElement("h2")
+
+            if (humanScore > computerScore){
+                finish.textContent = "YOU WIN THIS GAME!"
+            }
+
+            else if (computerScore > humanScore) {
+                finish.textContent = "YOU LOSE THIS GAME!"
+            }
+
+            else {
+                finish.textContent = "THIS GAME WAS A DRAW";
+            }
+
+            content.appendChild(finish);
+            return true
+        }
+    }
     
     
     
