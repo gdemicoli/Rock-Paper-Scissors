@@ -120,6 +120,8 @@ function playRound(input) {
 } 
 
 function playGame() {
+    //Reset function with play again button.
+    //This will set all variables to original value 
 
     let humanScore = 0;
     let computerScore = 0;
@@ -129,53 +131,55 @@ function playGame() {
     let playerSelection;
     let computerSelection;
 
-
-    const content = document.querySelector("body")
-
-    const divButtons = document.createElement("div")
-
-    const rockButton = document.createElement("button");
-    const scissorsButton = document.createElement("button");
-    const paperButton = document.createElement("button");
-
-    rockButton.textContent = "Rock";
-    scissorsButton.textContent = "Scissors";
-    paperButton.textContent = "Paper";
-
-    divButtons.appendChild(rockButton)
-    divButtons.appendChild(paperButton)
-    divButtons.appendChild(scissorsButton)
-
-    content.appendChild(divButtons);
-
-    const divScores = document.createElement("div")
-
-    const round = document.createElement("h2");
-    const playerScore = document.createElement("h3");
-    const compScore = document.createElement("h3");
-
-    round.textContent = "Round: 0"; 
-    playerScore.textContent = "YOU: " + humanScore;
-    compScore.textContent = "COMPUTER: " + computerScore;
-
     
+        const content = document.querySelector("body")
 
-    divScores.appendChild(round)
-    divScores.appendChild(playerScore)
-    divScores.appendChild(compScore)
+        const divButtons = document.createElement("div")
+
+        const rockButton = document.createElement("button");
+        const scissorsButton = document.createElement("button");
+        const paperButton = document.createElement("button");
+
+        rockButton.textContent = "Rock";
+        scissorsButton.textContent = "Scissors";
+        paperButton.textContent = "Paper";
+
+        divButtons.appendChild(rockButton)
+        divButtons.appendChild(paperButton)
+        divButtons.appendChild(scissorsButton)
+
+        content.appendChild(divButtons);
+
+        const divScores = document.createElement("div")
+
+        const round = document.createElement("h2");
+        const playerScore = document.createElement("h3");
+        const compScore = document.createElement("h3");
+
+        round.textContent = "Round: 0"; 
+        playerScore.textContent = "YOU: " + humanScore;
+        compScore.textContent = "COMPUTER: " + computerScore;
+
+        
+
+        divScores.appendChild(round)
+        divScores.appendChild(playerScore)
+        divScores.appendChild(compScore)
+        
+
+
+        content.appendChild(divScores);
+
+        const playerLog = document.createElement("h4");
+        playerLog.textContent = "Round Logs:"
+        const bottomDiv = document.createElement("div");
+        const list = document.createElement("ol");
+
+        bottomDiv.appendChild(playerLog)
+        bottomDiv.appendChild(list)
+
+        content.appendChild(bottomDiv)
     
-
-
-    content.appendChild(divScores);
-
-    const playerLog = document.createElement("h4");
-    playerLog.textContent = "Round Logs:"
-    const bottomDiv = document.createElement("div");
-    const list = document.createElement("ol");
-
-    divScores.appendChild(playerLog)
-    divScores.appendChild(list)
-
 
 
 
@@ -237,10 +241,30 @@ function playGame() {
                 finish.textContent = "THIS GAME WAS A DRAW";
             }
 
+            divButtons.removeChild(rockButton)
+            divButtons.removeChild(paperButton)
+            divButtons.removeChild(scissorsButton)
+
+            const playAgainButton = document.createElement("button")
+            playAgainButton.textContent = "Play Again"
+
+            divButtons.appendChild(playAgainButton)
+
             content.appendChild(finish);
-            return true
-        }
+            
+
+            playAgainButton.addEventListener('click', () => {
+                humanScore = 0;
+                computerScore = 0;
+
+                roundWinner = null;
+                roundNumber = 0;
+                playerSelection = null
+
+
+        })
     }
+}
     
     
     
