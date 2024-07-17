@@ -254,12 +254,16 @@ function playGame() {
             
 
             playAgainButton.addEventListener('click', () => {
-                humanScore = 0;
-                computerScore = 0;
 
-                roundWinner = null;
-                roundNumber = 0;
-                playerSelection = null
+                window.location.reload();
+                // humanScore = 0;
+                // computerScore = 0;
+
+                // roundWinner = null;
+                // roundNumber = 0;
+                // playerSelection = null
+
+            
 
 
         })
